@@ -74,6 +74,9 @@
       .c-sidebar-nav{
         padding-top: 48px;
       }
+      table td{
+          padding:5px !important;
+      }
     </style>
   </head>
   <body class="c-app">
@@ -142,7 +145,55 @@
         <main class="c-main">
           <div class="container-fluid">
             <div class="fade-in">
-                
+                <section>
+                        <div class="col-12">
+                                <div class="card">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-11">
+                                        <h4>Pelanggan</h4>
+                                    </div>
+                                    <div class="col-1">
+                                        <a class="nav-link btn-sm btn-danger text-center"  href="index_pelanggan.html"><i class=" fas fa-times"></i></a>
+                                    </div>
+                                </div>
+                                    <table class="table table-striped">
+                                      <tbody>
+                                        <tr>
+                                          <td style="width:10%">Nama</td>
+                                          <td> <strong>Aliffia Rosita</strong> </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width:10%">Alamat</td>
+                                          <td>{{$customer->alamat}}</td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width:10%">Telepon</td>
+                                          <td>{{$customer->telepon}}</td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width:10%">Cabang</td>
+                                          <td><a href="{{route('cabang.detail',$customer->branch->id)}}">{{$customer->branch->nama}}</a></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <form class="d-inline" id="form-delete" action="{{route('pelanggan.hapus', $customer->id)}}" method="POST">
+                                      <!-- @csrf
+                                      @method('DELETE') -->
+                                      </form>
+                                      <button id="delete" type="submit" class="btn ml-4 mt-2 btn-warning text-white float-right" style="width: 78px !important;">
+                                        <i class="fa fa-trash"></i></button>
+                                    <a href="edit_pelanggan.html" class="btn mt-2 btn-info float-right" style="width: 78px !important;"><i class="fa fa-edit"></i></a>
+                                  </div>
+                              
+                                  <div class="card-footer bg-secondary text-right">
+                                    <span style="font-size: 12px">
+                                      <strong>Dibuat Pada: </strong>{{  $customer->created_at->dayName." | ".$customer->created_at->day." ".$customer->created_at->monthName." ".$customer->created_at->year}} | {{$customer->created_at->format('h:i:s A')}} | <a href="{{route('karyawan.detail',$customer->createdBy->employee->id)}}">{{$customer->createdBy->employee->nama}}</a> / <strong>Diubah Pada: </strong>{{  $customer->updated_at->dayName." | ".$customer->updated_at->day." ".$customer->updated_at->monthName." ".$customer->updated_at->year}} | {{$customer->updated_at->format('h:i:s A')}} | {{$customer->updated_at->format('h:i:s A')}} | <a href="{{route('karyawan.detail',$customer->updatedBy->employee->id)}}">{{$customer->updatedBy->employee->nama}}</a>
+                                  </span>
+                                  </div>
+                                </div>
+                              </div>
+                </section>
             </div>
           </div>
         </main>

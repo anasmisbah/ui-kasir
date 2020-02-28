@@ -74,6 +74,12 @@
       .c-sidebar-nav{
         padding-top: 48px;
       }
+      .form-group{
+          margin-bottom:0px !important;
+      }
+      .card-body{
+          min-height: 400px;
+      }
     </style>
   </head>
   <body class="c-app">
@@ -142,7 +148,52 @@
         <main class="c-main">
           <div class="container-fluid">
             <div class="fade-in">
-                
+                    <div class="col-12">
+                            <div class="card">
+                                
+                                <form role="form-horizontal" action="{{ route('pelanggan.perbarui',$customer->id) }}" method="POST">
+                                    <!-- @csrf
+                                        @method('PUT') -->
+                                        <div class="card-body">
+                                                <div class="row mb-3">
+                                                        <div class="col-11">
+                                                            <h4>Pelanggan</h4>
+                                                        </div>
+                                                        <div class="col-1">
+                                                            <a class="nav-link btn-sm btn-danger text-center"  href="index_pelanggan.html"><i class=" fas fa-times"></i></a>
+                                                        </div>
+                                                    </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Nama</label>
+                                            <div class="col-sm-10"><input type="text" value="{{$customer->nama}}" class="form-control form-control-sm" name="nama" placeholder="Masukkan Nama Cabang"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Alamat</label>
+                                            <div class="col-sm-10"><input type="text" value="{{$customer->alamat}}" class="form-control form-control-sm" name="alamat" placeholder="Masukkan Alamat Karyawan"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Telepon</label>
+                                            <div class="col-sm-10"><input type="text" value="{{$customer->telepon}}" class="form-control form-control-sm" name="telepon" placeholder="Masukkan Telepon Karwayan"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Cabang</label>
+                                            <div class="col-sm-10"><select class="form-control form-control-sm " name="branch_id">
+                                                <!-- @foreach ($branches as $branch) -->
+                                                    <option value="{{$branch->id}}" {{ $branch->id == $customer->branch_id?"selected":"" }} >{{$branch->nama}}</option>
+                                                <!-- @endforeach -->
+                                            </select></div>
+                                        </div>
+                                        <div style="margin-top: 130px; margin-bottom: 100px">
+                                            <button type="submit" class="btn  btn-info float-right" style="width: 78px !important; "><i class="fa fa-save"></i></button>
+                                        </div>
+                                    </div>
+                        
+                                    <div class="card-footer bg-secondary" style="height: 50px">
+                                        <p class="text-right">Dibuat pada</p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
             </div>
           </div>
         </main>
